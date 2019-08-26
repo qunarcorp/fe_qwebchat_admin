@@ -1,0 +1,264 @@
+[ms-controller] {
+	display: none;
+}
+.container {
+	width: 980px;
+	margin: 0 auto;
+}
+.m-nav {
+    background: #01bcd4;
+    position: relative;
+    z-index: 1;
+}
+.m-sub-nav {
+	width: 940px;
+	margin: 0 20px;
+	background: #f2f2f2;
+    position: relative;
+    z-index: 1;
+}
+.m-nav-list, .m-subnav-list{
+    float: left;
+}
+.m-subnav-list {
+	margin-left: 60px;
+}
+.m-nav-list li, .m-subnav-list li, .m-group-name li{
+    float: left;
+    list-style: none;
+}
+.m-nav-list li a {
+    display: block;
+    font: bold 14px/38px tahoma,arial,"Hiragino Sans GB",simsun,sans-serif;
+    color: #fff;
+    padding: 0 34px;
+}
+.m-group-name li a {
+	display: block;
+    font: normal 12px/26px tahoma,arial,"Hiragino Sans GB",simsun,sans-serif;
+    color: #000;
+    /*padding: 0 20px;*/
+}
+.m-group-name li label {
+    display: block;
+    padding: 0 20px;
+    cursor: pointer;
+}
+.m-nav-list li.active a {
+    background: #0089a1;
+}
+.m-subnav-list li a {
+	display: block;
+    font: bold 12px/30px tahoma,arial,"Hiragino Sans GB",simsun,sans-serif;
+    color: #339900;
+    padding: 0 34px;
+    cursor: pointer;
+}
+.m-subnav-list li.active a {
+	background: #cccccc;
+}
+
+.m-subnav-shopnav {
+    overflow: hidden;
+    width: 100%;
+}
+
+.m-subnav-shopnav {
+    display: none;
+}
+
+.m-subnav-list .m-subnav-shopnav li a {
+    background: #ccc;
+    color: #01bcd4;
+} 
+
+.m-subnav-list .m-subnav-shopnav li.active a {
+    background: #fff;
+}
+
+.m-subnav-list li.active .m-subnav-shopnav {
+    display: block;
+}
+
+.m-tab {
+	margin-top: 15px;
+}
+
+.m-group-name .active{
+	background: #f2f2f2;
+}
+.error-tip {
+    color: red;
+}
+.js-dialog {
+    max-width: 450px
+}
+.m-waiterList {
+    position: relative;
+}
+.m-waiterList th,.m-waiterList td {
+    min-width: 110px;
+    line-height: 30px;
+    text-align: center;
+}
+.m-waiterList th{
+    font-weight: normal;
+    color: #555;
+    border-bottom: 1px solid #ccc;
+}
+.m-waiterList td {
+    cursor: move;
+}
+.m-waiterList tr:hover {
+    background: #f2f9fd;
+}
+#m-waiterList {
+    max-height: 600px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/*分组产品关联模块*/
+.mapping-box {
+    padding: 0 20px;
+}
+.mapping-box .clear {
+    clear: both;
+}
+.m-left-box {
+    float: left;
+    width: 260px;
+}
+.m-right-box {
+    float: right;
+    width: 600px;
+}
+.m-left-box, 
+.m-right-box .ipt-area{
+    padding: 0 4px 8px;
+    border: 1px solid #e5e5e5;
+}
+.m-left-box .groups {
+    width: 100%;
+    padding: 4px;
+}
+.m-left-box .m-tit {
+    font-size: 18px;
+    text-align: center;
+    border-bottom: 1px solid #aaa;
+    margin: 4px 8px;
+    padding-bottom: 8px;
+}
+.m-left-box .item {
+    font-size: 16px;
+    margin: 8px 16px 4px 8px;
+    padding-left: 6px;
+    cursor: pointer;
+}
+.m-left-box .item.on {
+    background-color: #01bcd4;
+    color: #fff;
+    font-size: 18px;
+}
+.m-right-box .ipt-area {
+    margin-bottom: 20px;
+    height: 100px;
+}
+.m-right-box .ipt-box {
+    display: inline-block;
+    height: 100px;
+    width: 500px;
+}
+.m-right-box .ipt-tit {
+    margin: 4px;
+    color: red;
+}
+.m-right-box .ipt {
+    width: 480px;
+    height: 64px;
+    padding: 4px 8px;
+    resize: none;
+}
+.m-right-box .opers {
+    height: 100px;
+    margin-left: 10px;
+    display: inline-block;
+}
+/*分组产品关联模块*/
+
+/* 服务设置 */
+.services-setting .title {
+    padding-left: 20px;
+    font-size: 20px;
+    color: #817AFC;
+    border-bottom: 2px solid #3472BA;
+}
+.services-setting .container {
+    padding: 20px;
+}
+.services-setting .container .tip {
+    margin-bottom: 10px;
+    color: #aaa;
+}
+.services-setting .container .message {
+    width: 50%;
+    margin-bottom: 10px;
+    padding: 3px 5px;
+}
+.services-setting .container .welcome-item {
+    margin-top: 10px;
+}
+.services-setting .container .save-btn {
+    position: relative;
+    left: 50%;
+    margin-left: -46px;
+    margin-top: 20px;
+    padding: 6px 20px;
+    border-radius: 4px;
+    border: 0;
+    font-size: 13px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #1FBCD2;
+}
+.services-setting .welcome-star {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: url("../../../public/img/star.png") no-repeat;
+    background-size: 100%;
+}
+.services-setting .welcome-message-container{
+    margin: 10px 0 0 30px;
+}
+
+.confirm_account {
+    text-align: center;
+}
+.confirm_account .desc {
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+.wechat-account {
+    text-align: center;
+}
+.wechat-account .tit {
+    font-size: 17px;
+    font-weight: bold;
+}
+.wechat-account .label {
+    text-align: left;
+    margin-top: 20px;
+}
+.wechat-account .desc {
+    text-align: left;
+    margin-top: 20px;
+}
+.wechat-account .pic {
+    margin-top: 20px;
+    width: 258px;
+    height: 258px;
+}
+.supplier-strategy-edit{
+    float: left;
+}

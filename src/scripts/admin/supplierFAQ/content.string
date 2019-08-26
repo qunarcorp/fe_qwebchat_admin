@@ -1,0 +1,149 @@
+<div class="main">
+    <a class="g-btn qchat-download" href="//im.qunar.com/#/download" target="_blank">下载Qchat</a>
+    <div class="m-nav clearfix">
+        <div class="container">
+            <div class="m-nav-list">
+                <li>
+                    <a href="javascript:void(0)" @click="toWaiterManage">客服管理</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" @click="toSmartConsult">智能客服选项</a>
+                </li>
+                <li class="active">
+                    <a href="javascript:void(0)">服务设置</a>
+                </li>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="m-sub-nav clearfix">
+            <div class="m-subnav-list">
+                <li v-for="item in suList" :class="{active: item.id === currentRobot.id}">
+                    <a href="javascript:;" @click="changeTab(item)">{{item.name}}</a>
+                </li>
+            </div>
+        </div>
+        <div class="m-form">
+            <div class="head">
+                <h3 class="title">设置智能客服欢迎语：</h3>
+            </div>
+            <div class="cont">
+                <div class="welcome-msg">
+                    <span class="label">欢迎语：</span>
+                    <input class="inp" type="text" v-model="currentRobot.robotWebcome" />
+                    <a href="javascript:;" class="g-btn g-btn-sm" @click="saveWelcomeMsg">保存</a>
+                </div>
+            </div>
+        </div>
+        <div class="m-form">
+            <div class="head">
+                <h3 class="title">设置常见问题：</h3>
+            </div>
+            <div class="cont">
+                <div class="m-faq">
+                    <p class="tips">只要您的产品线路里包含了您配置的目的地就会触发问答展示给用户，您也可以针对同一类问题输入多个目的地。</p>
+                    <div class="m-table">
+                        <div class="tr">
+                            <div class="th city">目的地</div>
+                            <div class="th question">问题</div>
+                            <div class="th answer">解答</div>
+                            <div class="th operate">
+                                <a href="javascript:;"  class="oper" @click="addFAQ">+新增问答集合</a>
+                            </div>
+                        </div>
+                        <div class="tr" v-for="(item, i) in FAQList">
+                            <div class="td city">
+                                <ul class="city-wrapper" @click="editFAQ(FAQList, i)">
+                                    <li class="item" v-for="(city, ii) in item.dest">
+                                        <span class="txt">{{city}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="td question" @click="editFAQ(FAQList, i)">
+                                <input class="question-input"
+                                    v-for="question in item.question"
+                                    v-model="question"
+                                    placeholder="输入问题名称" />
+                            </div>
+                            <div class="td answer">
+                                <textarea class="question-input"
+                                    type="textarea"
+                                    :rows="4"
+                                    v-model="item.answer"
+                                    placeholder="录入问题的解答，支持去哪儿链接的录入"
+                                    @click="editFAQ(FAQList, i)"
+                                ></textarea>
+                            </div>
+                            <div class="td operate">
+                                <a href="javascript:;" class="oper" @click="delFAQ(i)">删除</a>
+                                <a href="javascript:;" class="oper" @click="editFAQ(FAQList, i, item.dest)">新增问答</a>
+                                <a href="javascript:;" class="oper" @click="operate(item, 1)" v-if="item.status === 0">启用</a>
+                                <a href="javascript:;" class="oper" @click="operate(item, 0)" v-if="item.status === 1">禁用</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <el-dialog
+        title="添加问答"
+        :visible.sync="dialog"
+        top="5vh"
+        width="40%"
+    >
+        <el-form :model="form" ref="form" :rules="formRules" label-width="130px">
+            <el-form-item label="出发地" v-if="form.type === 'routeFAQ'" prop="dep">
+                <el-select
+                    v-model="form.dep"
+                    placeholder="请输入出发地"
+                    :remote-method="fetchSuggest"
+                    remote
+                    filterable
+                >
+                    <el-option
+                        v-for="item in suggestList"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.name">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="目的地" prop="dest">
+                <el-select
+                    v-model="form.dest"
+                    multiple
+                    remote
+                    filterable
+                    placeholder="请输入出发地"
+                    :disabled="noEditDest"
+                    :remote-method="fetchSuggest"
+                >
+                    <el-option
+                        v-for="item in suggestList"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.name">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="问题" prop="question">
+                <el-row>
+                    <el-col :span="20">
+                        <el-input v-model="form.question[0]" :maxlength="15" placeholder="问题名称不能超过15个字"></el-input>
+                    </el-col>
+                </el-row>
+            </el-form-item>
+            <el-form-item label="解答" prop="answer">
+                <el-input
+                    type="textarea"
+                    v-model="form.answer"
+                    :rows="4"
+                ></el-input>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+            <el-button @click="dialog = false">取 消</el-button>
+            <el-button type="primary" @click="submit">保存</el-button>
+        </span>
+    </el-dialog>
+</div>

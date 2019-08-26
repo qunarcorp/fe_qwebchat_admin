@@ -1,0 +1,63 @@
+/* 
+*@author: matt.liu;
+*@lastModify: matt.liu;
+*@lastModifyDate: 2015-10-14;
+*@description:商户在线咨询管理平台的reset样式，一般放在文件最后进行引用覆盖;
+ */
+
+/*.clearfix {
+	*zoom: 1;
+	overflow: hidden;
+}*/
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{height:1%;}
+.fr {
+	float: right;
+}
+.fl {
+	float: left;
+}
+.bt {
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 15px;
+}
+.mr5{
+	margin-right: 5px;
+}
+.mr10 {
+	margin-right: 10px;
+}
+.pl60 {
+	padding-left: 60px;
+}
+.mt_5 {
+	margin-bottom: 5px;
+}
+.red {
+	color: #f00;
+}
+.bt5 {
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 5px;
+}
+.pd5 {
+	padding: 0 3px;
+}
+.btn {
+	display: inline-block;
+	*zoom: 1;
+	*display:inline;
+	line-height: 14px;
+    height: 14px;
+    padding: 6px 20px;
+    zoom: 1;
+    background: #f8f8f8;
+    color: #555;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}

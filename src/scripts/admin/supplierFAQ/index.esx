@@ -1,0 +1,333 @@
+/* 
+@Author:
+@Date:   2018-03-29T12:10:44+08:00
+@Filename: index.esx
+@Last modified by:  
+@Last modified time: 2018-04-10T15:16:14+08:00
+*/
+
+'use strict';
+require('./../../common/ifream/iframeAutoHeight.js');
+import contentTpl from './content.string';
+
+var api = {
+		robotConfig: '/sys/saveRobotConfig.qunar',
+    	getQAList: '/sys/ml/supplier_robot/qalist.qunar',
+    	updateQAList: '/sys/ml/supplier_robot/update_qa.qunar'
+    },
+    currentRobot = window.suList[0] || {},
+    reqData = {
+        supplier_id: currentRobot.id,
+        business_id: window.bType
+    };
+    
+let destCount = {};
+
+new Vue({
+    el: '#pageManage',
+    template: contentTpl,
+    data() {
+        return {
+            noEditDest: false,
+            operation: null,
+            suggestList: [],
+            suList: window.suList,
+            currentRobot: currentRobot,
+            dialog: false,
+            form: {
+                dest: [],
+                question: [],
+                answer: ''
+            },
+            formRules: {
+                dest: [{
+                    required: true, message: '请输入目的地', trigger: 'blur,change'
+                }],
+                question: [{
+                        required: true, message: '问题不能为空', trigger: 'blur,change'
+                    }, {
+                    validator(rule, questionStr, callback) {
+                        const value = questionStr[0];
+                        if (!(value.replace(/^\s+|\s+$/g, ''))) {
+                            return callback(new Error('问题不能为空'));
+                        } else if (!/[\u4E00-\u9FA5a-zA-Z0-9]/.test(value)) {
+                            return callback(new Error('问题不能全为标点符号'));
+                        }
+                        callback();
+                    },
+                    trigger: 'blur,change'
+                }],
+                answer: [{
+                    required: true, message: '请输入问题的解答', trigger: 'blur,change'
+                }, {
+                    validator(rule, value, callback) {
+                        if (!(value.replace(/^\s+|\s+$/g, ''))) {
+                            return callback(new Error('答案不能为空'));
+                        } else if (!/[\u4E00-\u9FA5a-zA-Z0-9]/.test(value)) {
+                            return callback(new Error('答案不能全为标点符号'));
+                        } else {
+                            const rURI = /(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+/gm;
+                            const matched = value.match(rURI);
+                            if (matched && matched.length) {
+                                const anchor = document.createElement('a');
+                                const includeOtherDomain = matched.some(domain => {
+                                    return domain.indexOf('test.com') === -1;
+                                });
+                                if (includeOtherDomain) {
+                                    return callback(new Error('不可录入非test域名下的链接'));
+                                }
+                            }
+                        }
+                        callback();
+                    }
+                }]
+            },
+            FAQList: []
+        };
+    },
+    watch: {
+        dialog(value) {
+            if (value === false) {
+                this.noEditDest = false;
+            }
+        }
+    },
+    methods: {
+        operate(data, status) {
+            $.ajax({
+                url: api.updateQAList,
+                type: 'GET',
+                dataType: 'json',
+                data: $.extend({}, reqData, {
+                    id: data.id,
+                    status,
+                    answer: encodeURIComponent(data.answer),
+                    dest: data.dest.map(item => {
+                        return encodeURIComponent(item);
+                    }).join(','),
+                    question: data.question.map(item => {
+                        return encodeURIComponent(item);
+                    }).join(',')
+                }),
+                success: function(res) {
+                    if (res.status === 0) {
+                        data.status = status;
+                    }
+                }
+            });
+        },
+        submit() {
+            const form = this.form;
+            
+            var destStr = form.dest.sort().join(',');
+            if (destCount[destStr] === 10 && !form.id) {
+                this.$alert('该目的地下的问答已经到达最大数量10个，不能再增加问答');
+                return;
+            }
+
+            this.$refs.form.validate(valid => {
+                if (valid) {
+                    $.ajax({
+                        url: api.updateQAList,
+                        type: 'POST',
+                        dataType: 'json',
+                        data: $.extend({}, reqData, form.id ? {id: form.id} : null, {
+                            answer: encodeURIComponent(form.answer),
+                            dest: form.dest.map(item => {
+                                return encodeURIComponent(item);
+                            }).join(','),
+                            question: form.question.map(item => {
+                                return encodeURIComponent(item);
+                            }).join(',')
+                        }),
+                        success: res => {
+                            this.dialog = false;
+                            if (!form.id) {
+                                this.getFAQList();
+                            } else {
+                                const {data, index} = this.operation;
+                                data[index] = $.extend(true, {}, form);
+                            }
+                        }
+                    });
+                }
+            });
+        },
+        addFAQ() {
+            this.form = {
+                dest: [],
+                question: [],
+                answer: ''
+            };
+            this.dialog = true;
+            this.$nextTick(() => {
+                this.$refs.form.clearValidate();
+            });
+        },
+        editFAQ(data, index, dest) {
+            this.operation = {
+                data,
+                index
+            };
+            this.form = dest ? {
+                dest: [...dest],
+                question: [],
+                answer: ''
+            } : $.extend(true, {}, data[index]);
+            
+            if (dest) {
+                var destStr = dest.sort().join(',');
+                if (destCount[destStr] === 10) {
+                    this.$alert('该目的地下的问答已经到达最大数量10个，不能再增加问答');
+                    return;
+                }
+                
+                this.noEditDest = true
+            }
+            this.dialog = true;
+            this.$nextTick(() => {
+                this.$refs.form.clearValidate();
+            });
+        },
+        delFAQ(index) {
+            const row = this.FAQList[index];
+            $.ajax({
+                url: api.updateQAList,
+                type: 'POST',
+                dataType: 'json',
+                data: $.extend({}, reqData, {
+                    status: 2,
+                    id: row.id,
+                    answer: encodeURIComponent(row.answer),
+                    dest: row.dest.map(item => {
+                        return encodeURIComponent(item);
+                    }).join(','),
+                    question: row.question.map(item => {
+                        return encodeURIComponent(item);
+                    }).join(',')
+                })
+            }).done(res => {
+                if (res && res.status === 0) {
+                    this.FAQList.splice(index, 1);
+                    
+                    const dest = row.dest.sort().join(',');
+                    --destCount[dest];
+                }
+            });
+        },
+        fetchSuggest(queryString) {
+            if (!queryString) {
+                this.suggestList = [];
+                return;
+            }
+            $.ajax({
+                url: '//sgt.package.test.com/suggest/sight/sgt',
+                type: 'GET',
+                dataType: 'jsonp',
+                data: {
+                    type: '城市,国家',
+                    start: 0,
+                    rows: 20,
+                    query: queryString
+                },
+                success: res => {
+                    if (res && res.ret && res.data) {
+                        this.suggestList = res.data;
+                    } else {
+                        this.suggestList = [];
+                    }
+                }
+            });
+        },
+        saveWelcomeMsg() {
+            $.ajax({
+                url: api.robotConfig,
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    robotname: this.currentRobot.robotName,
+                    supplierid: this.currentRobot.id,
+                    robotstrategy: 1,
+                    robotwelcome: this.currentRobot.robotWebcome
+                })
+            }).done(res => {
+                if (res && res.ret) {
+                    this.$alert('保存成功');
+                } else {
+                    this.$alert('保存失败');
+                }
+            });
+        },
+        getFAQList() {
+            $.ajax({
+                url: api.getQAList,
+                type: 'GET',
+                dataType: 'json',
+                data: reqData
+            }).done((res) => {
+                if (res && res.status === 0 && res.data && res.data.length) {
+                    this.FAQList = res.data.filter(item => {
+                        return item.status !== 2;
+                    }).map(item => {
+                        item.dest = item.dest && item.dest.split(',') || [];
+                        return item;
+                    });
+                    
+                    // 统计目的地数量
+                    destCount = {};
+                    this.FAQList.forEach(item => {
+                        const dest = item.dest.sort().join(',');
+                        if (!destCount[dest]) {
+                            destCount[dest] = 1;
+                        } else {
+                            ++destCount[dest];
+                        }
+                    });
+                } else {
+                    this.FAQList = [];
+                }
+            });
+        },
+        // tab切换
+        changeTab(item) {
+            this.currentRobot = item;
+            this.welcomeMsg = item.robotWebcome;
+            reqData.supplier_id = item.id;
+            this.getFAQList();
+        },
+        // 跳转到客服管理頁面
+        toWaiterManage() {
+            var bType = document.cookie.match(/(^|\s)QChat_bType=([^;]*)(;|$)/i),
+                bSuId = document.cookie.match(/(^|\s)QChat_bSuId=([^;]*)(;|$)/i),
+                _bType,
+                _bSuId;
+            if (bType && bType.length && bType[2].replace(/"/g, '')) {
+                _bType = bType[2];
+            }
+            if (bSuId && bSuId.length && bSuId[2].replace(/"/g, '')) {
+                _bSuId = bSuId[2];
+            }
+            if (_bType && _bSuId) {
+                document.location.href = '/sys/manage.do?bType=' + _bType + '&bSuId=' + _bSuId;
+            } else if (_bType && !_bSuId) {
+                document.location.href = '/sys/manage.do?bType=' + _bType;
+            } else if (!_bType && _bSuId) {
+                document.location.href = '/sys/manage.do?bSuId=' + _bSuId;
+            } else {
+                document.location.href = '/sys/manage.do';
+            }
+        },
+        // 绑定微信
+        toWechat() {
+            location.href = '/sys/wechat.qunar?bType=' + window.bType;
+        },
+        // 智能机器人
+        toSmartConsult() {
+            location.href = '/sys/smartConsult.do?bType=' + window.bType;
+        }
+    },
+    mounted() {
+        this.getFAQList();
+    }
+});

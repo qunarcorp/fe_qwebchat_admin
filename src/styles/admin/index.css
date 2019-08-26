@@ -1,0 +1,165 @@
+require('resetcss');
+require('styleCommon/header.css');
+require('styleCommon/footer.css');
+require("avalonUI/chameleon/oniui-common.css");
+require('avalonUI/scrollbar/avalon.scrollbar.css');
+require('avalonUI/dropdown/avalon.dropdown.css');
+require('avalonUI/loading/avalon.loading.css');
+require("avalonUI/dialog/avalon.dialog.css");
+require("avalonUI/button/avalon.button.css");
+require("avalonUI/slider/avalon.slider.css");
+require("avalonUI/pager/avalon.pager.css");
+require("avalonUI/smartgrid/avalon.smartgrid.css");
+require("avalonUI/datepicker/avalon.datepicker.css");
+require("avalonUI/datepicker/avalon.coupledatepicker.css");
+require("GMManage.css");
+require("styleCommon/formElement.css");
+require("styleCommon/myreset.css");
+.qchat-download {
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+    top: 40px;
+    border-radius: 3px;
+    z-index: 100;
+    color: #fff;
+    background: #01bcd4;
+}
+[data-ischecked="1"] {
+    border: 1px solid #01da44;
+    background: #ccc;
+}
+#sessionDetial {
+    max-height: 600px;
+    overflow: auto;
+}
+.oni-dialog-content{
+
+    position: relative;
+}
+.m-session-content {
+    margin-top: 40px;
+    max-height: 445px;
+    overflow-y: scroll;
+}
+.m-session-title {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 94%;
+    border-top: 1px solid #dfdfdf;
+    padding: 0 3%;
+    margin-top: -17px;
+    height: 30px;
+    background: #f3f3f3;
+}
+.m-session-title li {
+    float: left;
+    margin-right: 15px;
+    line-height: 30px
+}
+.m-session-name {
+    margin-right: 15px;
+}
+.m-session-date {
+    margin-right: 10px;
+}
+.visitor {
+    width: 100%;
+    word-break: break-all;
+    word-wrap: break-word;
+    color: #ff3333;
+}
+.waiter {
+    width: 100%;
+    word-break: break-all;
+    word-wrap: break-word;
+    color: #3089d5;
+}
+.m-session-more {
+    display: block;
+    width: 90px;
+    line-height: 20px;
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    margin-left: -45px;
+    cursor: pointer;
+    z-index: 100;
+}
+#sessionDetial .oni-dialog-footer {
+    visibility: hidden;
+}
+
+.success-tip {
+    display: inline-block;
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
+    vertical-align: -3px;
+    background: url(../../../public/img/right.png) no-repeat 0px 2px;
+    background-size: 100% 100%;
+}
+.successinfo {
+    color: #339900;
+}
+
+.info-msg{
+    padding-left:20px;width:930px;margin:30px auto;text-align:left;font-size: 14px;
+}
+
+.weixin_label{margin-top: 40px;margin-bottom: 10px;color: #666;}
+.weixin_input_box{}
+.weixin_input{width: 360px;line-height: 14px;height: 14px;padding: 4px 5px;}
+.m-row {float: left;line-height: 26px;}
+
+h2.title {
+    height: 32px;
+    display: block;
+    border-left: 4px solid #34afc1;
+    background: #f1faf9;
+    font: bold 14px/32px "宋体";
+    padding-left: 10px;
+    margin-top:20px;
+    margin-bottom:20px;
+    width: 935px;
+}
+.operate_notice{
+    margin-top: 30px;
+    color: #666;
+}
+
+.dlg-consult-list {
+    max-height: 192px;
+    overflow: auto;
+    font-size: 0;
+    user-select: none;
+}
+#wechatDetial .tip {
+    font-size: 14px;
+}
+.dlg-consult-list .item {
+    display: inline-block;
+    padding: 0 14px;
+    margin: 10px 15px 0;
+    height: 34px;
+    line-height: 34px;
+    margin-left: 10px;
+    border: 1px solid #999;
+    font-size: 14px;
+    cursor: pointer;
+}
+.dlg-consult-list .item.active {
+    background-color: #999;
+    color: #fff;
+}
+.add-success {
+    color: #390;
+}
+.add-wait {
+    color: #f88;
+}
+
+.m-filter-row {
+    max-width: 100%;
+}

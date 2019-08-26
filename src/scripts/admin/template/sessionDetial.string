@@ -1,0 +1,15 @@
+<div class="m-session">
+	<ul class="m-session-title">
+		<li>访客：{{sessionDetial.visitorName}}</li>
+		<li>客服：{{sessionDetial.seatName}}</li>
+		<li>发起时间：{{sessionDetial.startTime}}</li>
+		<li>结束时间：{{sessionDetial.endTime}}</li>
+	</ul>
+	<a class="waiter m-session-more" ms-click="renderMoreDetial">查看更多</a>
+	<ul class="m-session-content" id="js-sessionDetail">
+		<!-- <li ms-repeat="sessionDetialList">
+			<p><span class="m-session-name">{{el.from}}</span><span class="m-session-date">{{el.date}}</span></p>
+			<p ms-attr-class="el.colorClass">{{el.html}}</p>
+		</li> -->
+	</ul>
+</div>

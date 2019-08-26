@@ -1,0 +1,250 @@
+#parse('widget/include/global.vm')
+<!DOCTYPE HTML>
+<html>
+<head>
+	#parse('page/common/head.vm')
+	<link type="text/css" rel="stylesheet" media="screen" href="${cssPath}/admin/index@1.0.0.css"/>
+	<link rel="stylesheet" href="${commonPath}/element-ui.css" />
+</head>
+<body>
+<div id="serviceManage" ms-controller="GMManage">
+	<a class="g-btn qchat-download" href="//im.qunar.com/#/download" target="_blank">下载Qchat</a>
+	<div class="m-nav clearfix">
+		<div class="container">
+			<div class="m-nav-list">
+				<li class="active">
+					<a href="#">客服管理</a>
+				</li>
+				<li>
+					<a href="javascript:void(0)" ms-click="toSmartConsult">智能客服选项</a>
+				</li>
+				<li ms-if="isSupplierService">
+					<a href="javascript:void(0)" ms-click="toSupplierFAQ">服务设置</a>
+				</li>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="m-sub-nav clearfix">
+			<div class="m-subnav-list">
+				<li class="active">
+					<a href="javascript:;" data-rel="shopList" ms-click="changeTab">店铺22管理</a>
+				</li>
+				<li>
+					<a href="javascript:;" data-rel="waiterList" ms-click="changeTab">客服列表</a>
+				</li>
+				<li>
+					<a href="javascript:;" data-rel="groupManage" ms-click="changeTab">分组管理</a>
+				</li>
+				<li>
+					<a href="javascript:;" data-rel="prdGroupMapping" ms-click="changeTab">分组产品关联</a>
+				</li>
+				<li>
+					<a href="javascript:;" data-rel="servicesSetting" ms-click="changeTab">服务设置</a>
+				</li>
+			</div>
+		</div>
+		<div id="shopList" class="m-tab" ms-visible="tabName == 'shopList'" ms-controller="shopList">
+			<div class="m-filter-row clearfix">
+				<!-- <label class="m-filter-tit">业务线：</label>
+                  <div class="m-filter-con2">
+                      <select ms-duplex="lineSelected">
+                          <option ms-repeat-item="lineOptions"  ms-attr-value="item.id" >{{item.name}}</option>
+                      </select>
+                  </div> -->
+				<label for="inputPassword" class="m-filter-tit">店铺名称：</label>
+				<div class="m-filter-con2">
+					<input type="text" class="form-txtctr-shop" ms-duplex="GMdata.busiSupplierName" ui-item="select" id="busiSupplierName" placeholder="店铺名称">
+				</div>
+				<label class="m-filter-tit fl">
+					<span class="g-btn g-btn-sm" ms-click="searchShopList">查询</span>
+				</label>
+			</div>
+			<!--<div class="m-filter-row clearfix">
+                <label class="m-filter-tit">
+                    <span class="g-btn g-btn-sm" ms-click="editShop">添加店铺</span>
+                </label>
+            </div>-->
+			<div class="m-filter-row clearfix" ms-widget="smartgrid, $shopList, $shopList"></div>
+			<div ms-widget="dialog, $editShop, $editShop" id="editShop"></div>
+		</div>
+		<div id="waiterList" class="m-tab" ms-visible="tabName == 'waiterList'" ms-controller="waiterList">
+			<div class="m-filter-row clearfix">
+				<label class="m-filter-tit">用户名：</label>
+				<div class="m-filter-con2">
+					<input type="text" class="form-txtctr" ms-duplex="GMdata.qunarName" placeholder="用户名"></div>
+				<label for="inputPassword" class="m-filter-tit">
+					<span class="require">网络显示名称：</span>
+				</label>
+				<div class="m-filter-con2">
+					<input type="text" class="form-txtctr" ms-duplex="GMdata.webName" ui-item="select" id="userName" placeholder="网络显示名称"></div>
+			</div>
+			<div class="m-filter-row clearfix">
+				<label class="m-filter-tit">所属商家：</label>
+				<ul class="m-group-name clearfix">
+					<li class="active">
+						<a href="javascript:;" ms-click="changeSuClassify" data-id="" data-rel="all">
+							<label>全部</label>
+						</a>
+					</li>
+					<li ms-repeat="suList">
+						<a href="javascript:;" ms-click="changeSuClassify" ms-data-id="el.id">
+							<label>{{el.name}}</label>
+						</a>
+					</li>
+					<label class="m-filter-tit fl">
+						<span class="g-btn g-btn-sm" ms-click="getGMList">查询</span>
+					</label>
+				</ul>
+			</div>
+		#*<div class="m-filter-row clearfix">
+            <label class="m-filter-tit">所属业务：</label>
+            <ul class="m-group-name clearfix">
+                <li class="active">
+                    <a href="javascript:;" ms-click="changeClassify"><label>
+                    <input type="radio" class="hide" ms-duplex-string="GMdata.busiType" value="">
+                    全部
+                    </label></a>
+                </li>
+                <li ms-repeat="businessList">
+                    <a href="javascript:;" ms-click="changeClassify">
+                        <label>
+                            <input type="radio" class="hide" ms-duplex-string="GMdata.busiType" ms-attr-value="el.id">{{el.name}}</label>
+                    </a>
+                </li>
+                <label class="m-filter-tit fl">
+                    <span class="g-btn g-btn-sm" ms-click="getGMList">查询</span>
+                </label>
+            </ul>
+        </div> *#
+			<div class="m-filter-row clearfix">
+				<label class="m-filter-tit">
+					<span class="g-btn g-btn-sm" ms-click="editWiter">添加客服</span>
+				</label>
+				<label class="m-filter-tit">
+					<span class="g-btn g-btn-sm" ms-click="renderSortSeat">调整显示顺序</span>
+				</label>
+				<label class="m-filter-tit" ms-visible="amIWaiter && !hasBoundWechat">
+					<span class="g-btn g-btn-sm" ms-click="bindWechat">绑定我的微信账号</span>
+				</label>
+				<label class="m-filter-tit" ms-visible="amIWaiter && hasBoundWechat">
+					<span class="g-btn g-btn-sm" ms-click="unbindWechat">解绑我的微信账号</span>
+				</label>
+			</div>
+			<div class="m-filter-row clearfix" ms-widget="smartgrid, $waiterList, $waiterList"></div>
+			<div ms-widget="dialog, $editGM, $editGM" id="editGM"></div>
+			<div id="m-editPriority" ms-widget="dialog, $editPriority, $editPriority" id="editGM"></div>
+			<div ms-widget="dialog, $rmgm, $rmGM"></div>
+		</div>
+		<div id="groupManage" class="m-tab" ms-visible="tabName == 'groupManage'" ms-controller="groupManage">
+			<div class="m-filter-row clearfix">
+				<label class="m-filter-tit">组名称：</label>
+				<div class="m-filter-con2">
+					<input type="text" class="form-txtctr" ms-duplex="groupData.groupName" placeholder="组名称">
+				</div>
+			</div>
+		#*<div class="m-filter-row clearfix">
+            <label class="m-filter-tit">所属业务：</label>
+            <ul class="m-group-name clearfix">
+                <li  class="active">
+
+                    <a href="javascript:;" ms-click="changeClassify">
+                        <label>
+                            <input type="radio" class="hide" ms-duplex-string="groupData.busiId" value="">全部</label>
+                    </a>
+
+                </li>
+                <li ms-repeat="businessList">
+                    <a href="javascript:;" ms-click="changeClassify">
+                        <label>
+                            <input type="radio" class="hide" ms-duplex-string="groupData.busi_id" ms-attr-value="el.id">{{el.name}}</label>
+                    </a>
+                </li>
+            </ul>
+        </div> *#
+			<div class="m-filter-row clearfix">
+				<label class="m-filter-tit">所属商家：</label>
+				<ul class="m-group-name clearfix">
+					<li  class="active">
+						<a href="javascript:;" ms-click="changeClassify">
+							<label>
+								<input type="radio" class="hide" ms-duplex-string="groupData.suIds" value="">全部</label>
+						</a>
+					</li>
+					<li ms-repeat="suList">
+						<a href="javascript:;" ms-click="changeClassify">
+							<label>
+								<input type="radio" class="hide" ms-duplex-string="groupData.suIds" ms-attr-value="el.id">{{el.name}}</label>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="m-filter-row clearfix">
+				<label class="m-filter-tit fl">
+					<a href="javascript:;" class="g-btn g-btn-sm" ms-click="getGroupList">查询</a>
+				</label>
+				<label class="m-filter-tit fr">
+					<a href="javascript:;" class="g-btn g-btn-sm" ms-click="editGroupDialog">添加</a>
+				</label>
+			</div>
+			<div class="m-filter-row clearfix" ms-widget="smartgrid, $groupList, $groupList"></div>
+			<div class="m-filter-row clearfix" id="groupEdit" ms-widget="dialog, $groupEdit, $groupEdit"></div>
+			<div class="m-filter-row clearfix" ms-widget="dialog, $rmGroup, $rmGroup"></div>
+		</div>
+		<div id="prdGroupMapping" class="m-tab" ms-visible="tabName == 'prdGroupMapping'" ms-controller="prdGroupMapping">
+			<div class="mapping-box">
+				<div class="m-left-box">
+					<h4 class="m-tit">客服分组列表</h4>
+					<ul class="groups">
+						<li class="item" ms-class="on:currentGroup == $key" ms-repeat="groups" ms-click="changeGroup" ms-attr-key="$key">{{$val}}</li>
+					</ul>
+				</div>
+				<div class="m-right-box">
+					<div class="ipt-area">
+						<p class="ipt-tit">输入产品id，需输入多个的情况以英文输入状态的逗号隔开</p>
+						<div class="ipt-box">
+							<textarea name="prds" class="ipt" ms-duplex="newPrds"></textarea>
+						</div>
+						<div class="opers">
+							<a href="javascript:;" class="g-btn g-btn-sm" ms-click="prdSave">保存</a>
+						</div>
+					</div>
+					<div class="prd-list" ms-widget="smartgrid, mappingList, $mappingListOpt"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div id="servicesSetting" class="m-tab services-setting" ms-visible="tabName == 'servicesSetting'" ms-controller="servicesSetting">
+			<h4 class="title">欢迎语设置</h4>
+			<div class="container">
+				<p class="tip"> <i class="welcome-star"></i>欢迎语将在用户接入后自动发送，您可以根据需求配置服务时间和非服务时间内的欢迎语</p>
+				<ul class="welcome-message">
+					<li class="welcome-item" ms-repeat-item="shopMessage">
+						<p class="shopname">{{item.name}}</p>
+						<div class="welcome-message-container clearfix">
+							<label>服务时间欢迎语:</label><br/>
+							<textarea class="message" ms-duplex="item.welcomes"></textarea><br/>
+							<label>非服务时间欢迎语:</label><br/>
+							<textarea class="message" ms-duplex="item.noServiceWelcomes"></textarea>
+						</div>
+					</li>
+				</ul>
+				<button class="save-btn" ms-click="save">更新设置</button>
+			</div>
+		</div>
+		<div ms-widget="dialog, $alertDlg, $alertDlg"></div>
+	</div>
+</div>
+<div id="vue_app"></div>
+	#parse('page/common/footer.vm')
+<script>
+	window.suList = $!{suList};
+	window.bType = $!{bType};
+	window.isSupplierService = $!{isSupplierService};
+</script>
+<script src="${commonPath}/vue.min.js"></script>
+<script src="${commonPath}/element-ui.js"></script>
+<script src="${commonPath}/jquery-1.7.2.js"></script>
+<script src="${jsPath}/admin/GMManage/index@1.0.0.js"></script>
+</body>
+</html>

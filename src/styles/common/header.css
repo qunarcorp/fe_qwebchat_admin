@@ -1,0 +1,19 @@
+#header {
+	width: 1200px;
+	margin: 25px auto;
+	border: 1px solid #fff;
+}
+#m-title {
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 25px;
+}
+.ty_logo {
+    float: left;
+    background: url(../../../public/img/logo.png) no-repeat;
+    width: 140px;
+    height: 50px;
+}
+.hide {
+	display: none;
+}

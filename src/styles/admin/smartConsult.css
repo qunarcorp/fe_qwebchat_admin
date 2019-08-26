@@ -1,0 +1,105 @@
+require('resetcss');
+require('styleCommon/header.css');
+require('styleCommon/footer.css');
+require("avalonUI/chameleon/oniui-common.css");
+require("avalonUI/dialog/avalon.dialog.css");
+require("avalonUI/button/avalon.button.css");
+require("avalonUI/smartgrid/avalon.smartgrid.css");
+require("styleCommon/formElement.css");
+require("styleCommon/myreset.css");
+require("GMManage.css");
+
+.qchat-download {
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+    top: 40px;
+    border-radius: 3px;
+    z-index: 100;
+    color: #fff;
+    background: #01bcd4;
+}
+
+.m-form {
+    margin-top: 20px;
+}
+
+.m-form .head {
+    border-bottom: 2px dotted #01bcd4;
+}
+.m-form .head .title {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #01bcd4;
+}
+.m-form .operations {
+    float: right;
+    margin-top: -5px;
+}
+.m-form .cont {
+    padding: 10px 0;
+}
+.m-form .cont .item {
+    margin-right: 10px;
+}
+.m-form .cont .item label {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 3px;
+}
+
+.m-form .inp {
+    display: inline-block;
+    width: 320px;
+    border: 1px solid #ddd;
+}
+.m-form .welcome-msg {
+    margin-bottom: 20px;
+}
+.m-form .frequently,
+.m-form .q-list {
+    display: inline-block;
+    vertical-align: top;
+}
+.m-form .a-item {
+    margin-bottom: 10px;
+}
+.m-form .a-item .order {
+    display: inline-block;
+    width: 25px;
+    min-width: 25px;
+}
+.m-form .tips {
+    color: #999;
+    margin-bottom: 10px;
+}
+.m-form .opts{
+    margin-right: 5px;
+    text-decoration: underline;
+}
+
+.dlg-question .item {
+    margin-bottom: 10px;
+}
+.dlg-question .label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    vertical-align: top;
+}
+.dlg-question textarea {
+    height: 100px;
+}
+.g-btn.normal {
+    background-color: #fff;
+    border: 1px solid #01bcd4;
+    color: #01bcd4;
+}
+
+.no-support-tip {
+    padding: 100px 50px;
+    text-align: center;
+    font-size: 25px;
+    color: #999;
+}

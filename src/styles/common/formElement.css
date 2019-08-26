@@ -1,0 +1,87 @@
+/* 
+*@author: matt.liu;
+*@lastModify: matt.liu;
+*@lastModifyDate: 2015-10-14;
+*@description: 表单相关样式;
+ */
+.m-filter-row {
+    margin-bottom: 20px;
+    line-height: 26px;
+}
+.m-filter-con1 {
+    float: left;
+    width: 100px;
+}
+.m-filter-con2 {
+    float: left;
+    width: 200px;
+}
+.m-filter-con4 {
+    float: left;
+    width: 400px;
+}
+.m-filter-con70 {
+    float: left;
+    width: 70px;
+}
+.m-filter-con2-tip{
+    float: left;
+    width: 240px;
+}
+.m-filter-tit {
+    float: left;
+    width: 100px;
+    padding-right: 15px;
+    text-align: right;
+}
+.m-filter-tit60 {
+    float: left;
+    width: 60px;
+    text-align: right;
+}
+.g-btn-sm {
+    padding: 4px 5px;
+}
+.g-btn, .g-btn:visited {
+    display: inline-block;
+    line-height: 14px;
+    height: 14px;
+    padding: 6px 20px;
+    zoom: 1;
+    background: #f8f8f8;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    background: #01bcd4;
+}
+
+.g-btn:hover, .g-btn:focus {
+    background: #efefef;
+    border-color: #bbb;
+    color: #555;
+    text-decoration: none;
+    outline: 0;
+}
+.form-txtctr{
+    /* width: 100%; */
+}
+.form-txtctr-shop{
+    width: 100%;
+}
+.form-txtctr-tip{
+    width: calc(100% - 40px);
+}
+.form-textarea {
+    width: 270px;
+    height: 150px;
+}
+table {
+    width: 100%;
+}
+
+

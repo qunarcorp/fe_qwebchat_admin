@@ -1,0 +1,17 @@
+<div class="pannel">
+    <el-dialog 
+        title="扫码关注公众号"
+        :visible="dialogBindingWechat"
+        top="15vh"
+        width="30%"
+        @close="dialogClosed"
+        center
+    >
+        <div class="wechat-account">
+            <img class="pic" :src="qrcode" />
+        </div>
+        <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogBindingWechat = false">取 消</el-button>
+        </span>
+    </el-dialog>
+</div>

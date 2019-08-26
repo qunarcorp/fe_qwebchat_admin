@@ -1,0 +1,16 @@
+{
+  "name": "treeJSON",
+  "version": "0.0.0",
+  "description": "for avalon.oniui to build widget tree json",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ilife5",
+  "license": "ISC",
+  "dependencies": {
+    "glob-expand": "0.0.2",
+    "underscore": "^1.6.0",
+    "js-beautify": "^1.5.1"
+  }
+}

@@ -1,0 +1,63 @@
+<form ms-widget="validation, $editGMDlg, $editGMDlg" ms-controller="editGM" onselectstart="return false">
+	<div class="m-filter-row clearfix mt_5">
+		<label class="m-filter-tit">用户名：</label>
+		<div class="m-filter-con2">
+			<input type="text" class="form-txtctr" ms-attr-disabled="datas.id!=''" maxlength="30" ms-duplex-required-maxlength-username="datas.qunarName" placeholder="用户名/手机号/邮箱">
+		</div>
+	</div>
+	<div class="m-filter-row clearfix mt_5 bt">
+		<label class="m-filter-tit">网络名称：</label>
+		<div class="m-filter-con2">
+			<input type="text" class="form-txtctr" maxlength="30" ms-duplex-required-maxlength="datas.webName" placeholder="网络名称"></div>
+	</div>
+	<!--<div class="m-filter-row clearfix bt">
+		<label class="m-filter-tit">优先级：</label>
+		<div class="m-filter-con2">
+			<input type="text" class="form-txtctr" maxlength="2" ms-duplex-required-int-maxlength="datas.webName" placeholder="优先级">
+			<p class="red">(值越大优先级越高)</p>
+		</div>
+	</div>-->
+	<div class="m-filter-row clearfix mt_5">
+		<label class="m-filter-tit">所属商家：</label>
+	</div>
+	<div class="m-filter-row clearfix bt mt_5 pl60">
+		<!-- <a href="javascript:void(0)" ms-if="isAdd" class="btn mr5" ms-repeat="rowSuList" ms-click="changeSupplier" ms-attr-data-id="el.id" ms-attr-data-isChecked= "el.isChecked">
+			<label>
+				<input type="checkbox" class="hide" ms-duplex-string="suIdList" ms-attr-value="el.id">{{el.name}}
+			</label>
+		</a> -->
+		
+		<span class="btn mr5" ms-repeat="rowSuList" ms-click="changeSupplier" ms-attr-data-id="el.id" ms-attr-data-isChecked= "el.isChecked">
+			{{el.name}}
+		</span>
+		<input type="text" class="hide" id="suId" name="business" errorinfo="必须选择所属商家" ms-duplex-required="suIds" />
+	</div>
+	<!-- <div ms-if="hasBusinessGroup">
+	<div class="m-filter-row clearfix mt_5">
+		<label class="m-filter-tit">选择组：</label>
+		<div class="m-filter-con2 bt5">(不选的情况默认显示业务下所有客服，选择后将只显示组内客服)</div>
+	</div>
+	<div ms-repeat="rowData">
+		<div class="m-filter-row clearfix mt_5">
+			<label class="m-filter-tit">{{el.busiName}}：</label>
+			<div class="m-filter-con2 red"></div>
+		</div>
+		<div class="m-filter-row clearfix bt mt_5 pl60" ms-attr-data-busiId = "el.busiId">
+			<span ms-repeat="el.groupList" ms-attr-data-groupId = "el.id" ms-click="changeGroupChecked" class="btn mr5" ms-attr-data-isChecked= "el.isChecked">
+				{{el.name}}
+			</span>
+		</div>
+	</div>
+	</div> -->
+	<div ms-if="datas.serviceMode">
+	    <div class="m-filter-row clearfix mt_5">
+		    <label class="m-filter-tit">功能配置：</label>
+	    </div>
+	    <div class="m-filter-row clearfix bt mt_5 pl60">
+		    <label class="m-filter-tit">可服务最大人数：</label>
+		    <div class="m-filter-con2">
+			    <input type="text" class="form-txtctr" pattern="\d+" style="width:60px;text-align:center;" maxlength="4" placeholder="" errorinfo="必须输入数字" ms-duplex-integer-maxlength="datas.maxSessions"/>
+		    </div>
+	    </div>
+	</div>
+</form>

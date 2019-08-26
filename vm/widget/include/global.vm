@@ -1,0 +1,4 @@
+#set($commonPath = "../../../../public/common")
+#set($cssPath = "../../../../prd/styles")
+#set($jsPath = "../../../../prd/scripts")
+#set($imgPath = "../../../../public/img")

@@ -1,0 +1,37 @@
+<div  ms-controller="priority" id="m-waiterList" onselectstart="return false" ms-mouseup="setTrOutStyle">
+	<table class="m-waiterList" id="priorityTable" >
+		<tr>
+			<!-- <th>优先级</th> -->
+			<th>用户名</th>
+			<th>网络显示名</th>
+			<th>组</th>
+			<th>所属业务</th>
+		</tr>
+		<tbody>
+			<tr ms-repeat="data" ms-attr-data-rel="$index" ms-attr-data-id="el.id" ms-mousedown="setPosition" ms-mouseup="updateSortSeat" ms-mouseover="setOverStyle" ms-mouseout="setOutStyle">
+			<!-- <td>{{el.priority}}</td> -->
+			<td>{{el.qunarName}}</td>
+			<td>{{el.webName}}</td>
+			<td>
+				<span ms-repeat="el.busiList">
+					<span class="pd5" ms-repeat="el.groupList">{{el.name}}</span>
+				</span>
+			</td>
+			<td>
+				<span ms-repeat="el.busiList">
+					{{el.busiName}}
+				</span>
+			</td>
+			
+		</tr>
+
+		</tbody>
+		<tr width="100%" height="10" data-rel="10000"  ms-mouseup="updateSortSeat" ms-mouseover="setOverStyle" ms-mouseout="setOutStyle">
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		</tr>
+		
+	</table>
+</div>

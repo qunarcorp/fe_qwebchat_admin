@@ -1,0 +1,47 @@
+<form ms-widget="validation, $editShopDlg, $editShopDlg" ms-controller="editShop" onselectstart="return false">
+	<!-- <div class="m-filter-row clearfix mt_5">
+		<label class="m-filter-tit">业务线：</label>
+		<div class="m-filter-con2">
+            <select ms-duplex="lineSelected">
+                <option ms-repeat-item="lineOptions"  ms-attr-value="item.bType" >{{item.businessName}}</option>
+            </select>
+		</div>
+	</div> -->
+	<div class="m-filter-row clearfix mt_5">
+		<label class="m-filter-tit">店铺名称：</label>
+		<div class="m-filter-con2-tip">
+			<input type="text" class="form-txtctr-tip" maxlength="30" ms-duplex-required-maxlength-shopName="datas.name" placeholder="网络名称">
+		</div>
+	</div>
+	<div class="m-filter-row clearfix mt_5 bt hide">
+		<label class="m-filter-tit">店铺状态：</label>
+		<div class="m-filter-con2">
+		    <label>
+		        <input name="state" type="radio" ms-value="1" ms-duplex-text="datas.status" style="margin-right:8px;"/>在线
+		    </label>
+		    <label style="margin-left:30px;">
+		        <input name="state" type="radio" ms-value="0" ms-duplex-text="datas.status" style="margin-right:8px;"/>下线
+		    </label>
+		</div>
+	</div>
+	<div class="m-filter-row clearfix mt_5 bt">
+		<label class="m-filter-tit">功能设置：</label>
+		<div class="m-filter-con2">
+            <label style="font-size:13px;">
+                <input style="margin-bottom:3px;" type="checkbox" id="default_checkbox" ms-duplex-checked="datas.extFlag"/>
+                &nbsp;启用排队
+            </label>
+		</div>
+	</div>
+	<div class="m-filter-row clearfix mt_5">
+		<label class="m-filter-tit">分配策略：</label>
+		<div class="supplier-strategy-edit">
+			<input type="radio" ms-duplex-string="datas.assignStragegy"  name="strategy" value="1">	
+			<label>轮询</label><br/>
+			<input type="radio" ms-duplex-string="datas.assignStragegy"  name="strategy" value="2">	
+			<label>最闲优先</label><br/>
+			<input type="radio" ms-duplex-string="datas.assignStragegy" name="strategy" value="3">
+			<label>随机</label>
+		</div>
+	</div>
+</form>
