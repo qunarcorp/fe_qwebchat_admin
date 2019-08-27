@@ -22,10 +22,12 @@
 ### 项目打包部署
   - 打包：sudo fekit min
   - 将refs、prd等产出复制并粘贴到后端项目/webapp目录下
+  - 或者将refs、prd等产出上传至后台服务所在的服务器目录/webapp下
 ### 关于项目
   - 项目使用的是 vm 模板, 打包上线后该模板放置于 java 项目中
   - 本地模拟登录链接：[IP]:[端口]/dashboard/setLoginUser.qunar?username=lfvxuhy7378&bType=1
   - 测试访问链接：[IP]:[端口]/sys/smartConsult.do?bType=1
-  - 复制
-    - cp /prd  /webapp/prd 
-    - cp /refs /webapp/refs
+  - 复制或者rz上传
+    - sudo rz  / unzip
+    - cp /prd -> /webapp/prd 
+    - cp /refs -> /webapp/refs
