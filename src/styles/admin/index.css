@@ -97,7 +97,7 @@ require("styleCommon/myreset.css");
     width: 20px;
     height: 20px;
     vertical-align: -3px;
-    background: url(../../../public/img/right.png) no-repeat 0px 2px;
+    background: url(/public/img/right.png) no-repeat 0px 2px;
     background-size: 100% 100%;
 }
 .successinfo {
