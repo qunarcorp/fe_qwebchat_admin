@@ -121,7 +121,7 @@ a .oni-icon, .oni-btn .oni-icon {
     text-align: left;
     overflow-y: auto;
     font-size: 12px;
-    *position: relative;
+    position: relative;
     /*IE6下滚动条有问题，加上Position修复*/ }
   .oni-fileuploader-wrapper button {
     width: 168px;

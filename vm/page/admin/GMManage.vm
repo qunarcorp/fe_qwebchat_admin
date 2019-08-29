@@ -15,12 +15,14 @@
 				<li class="active">
 					<a href="#">客服管理</a>
 				</li>
+				<!-- 
 				<li>
 					<a href="javascript:void(0)" ms-click="toSmartConsult">智能客服选项</a>
 				</li>
 				<li ms-if="isSupplierService">
 					<a href="javascript:void(0)" ms-click="toSupplierFAQ">服务设置</a>
 				</li>
+				-->
 			</div>
 		</div>
 	</div>

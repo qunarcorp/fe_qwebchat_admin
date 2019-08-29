@@ -239,6 +239,9 @@ function () {
                         vmodel.zIndex = vmodel.zIndex + vmodel.zIndexIncrementGlobal;
                         vmodel.title = vmodel.title || '&nbsp;';
                         $element.addClass('oni-dialog');
+                        if(element.getAttribute('id') == 'groupEdit'){
+                            $element.addClass('self-gm-group');
+                        }
                         element.setAttribute('ms-visible', 'toggle');
                         element.setAttribute('ms-css-position', 'position');
                         vm._renderView();

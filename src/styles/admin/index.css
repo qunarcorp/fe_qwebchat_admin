@@ -163,3 +163,7 @@ h2.title {
 .m-filter-row {
     max-width: 100%;
 }
+.self-gm-group {
+    overflow: auto;
+    height: auto;
+}
