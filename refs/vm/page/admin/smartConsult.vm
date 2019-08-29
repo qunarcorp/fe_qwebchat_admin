@@ -1,0 +1,208 @@
+####绑定微信管理页
+#parse('widget/include/global.vm')
+<!DOCTYPE HTML>
+<html>
+<head>
+	#parse('page/common/head.vm')
+	<link type="text/css" rel="stylesheet" media="screen" href="${cssPath}/admin/index@1.0.0.css"/>
+	<link type="text/css" rel="stylesheet" media="screen" href="${cssPath}/admin/smartConsult@1.0.0.css"/>
+
+	<script type="text/javascript">
+		window.suList = $!{suList};
+		window.bType = $!{bType};
+		window.isSupplierService = $!{isSupplierService};
+	</script>
+
+<body>
+<div class="" id="pageManage" ms-controller="pageManage">
+	<a class="g-btn qchat-download" href="//im.qunar.com/#/download" target="_blank">下载Qchat</a>
+
+	<div class="m-nav clearfix">
+		<div class="container">
+			<div class="m-nav-list">
+				<li>
+					<a href="javascript:void(0)" ms-click="toWaiterManage">客服管理</a>
+				</li>
+				<li class="active">
+					<a href="#">智能客服选项</a>
+				</li>
+				<li ms-if="isSupplierService">
+					<a href="javascript:void(0)" ms-click="toSupplierFAQ">服务设置</a>
+				</li>
+			</div>
+		</div>
+	</div>
+	<div ms-if="isSupport">
+		<div class="container">
+			<div class="m-sub-nav clearfix">
+				<div class="m-subnav-list">
+				####店铺名称TAB
+					<li class="" ms-repeat="shops">
+						<a href="javascript:;" ms-attr-data-index="$index" ms-click="changeTab" >{{ el.name }}</a>
+						<ul class="m-subnav-shopnav">
+							<li><a href="javascript:;" data-name="setting" ms-click="changeShopTab">智能客服设置</a></li>
+							<li><a href="javascript:;" data-name="feedbackList" ms-click="changeShopTab">用户反馈列表</a></li>
+						</ul>
+					</li>
+				</div>
+			</div>
+			<div ms-visible="tabName == 'setting'">
+				<div class="m-form">
+					<div class="head">
+						<h3 class="title">使用智能客服：</h3>
+						<div class="operations">
+							<a href="javascript:;" class="g-btn g-btn-sm normal" ms-click="startEdit('canEditSmartConsultSwitch')">编辑</a>
+							<a href="javascript:;" class="g-btn g-btn-sm" ms-click="save('canEditSmartConsultSwitch')">保存</a>
+						</div>
+					</div>
+					<div class="cont">
+						<span class="text">是否使用智能客服：</span>
+						<span class="item"><input type="radio" id="always"
+												  ms-attr-disabled="!editStatus.canEditSmartConsultSwitch"
+												  ms-duplex-number="args.strategy" value="1" name="switch" /><label for="always">始终使用</label></span>
+						<span class="item"><input type="radio" id="sometimes"
+												  ms-attr-disabled="!editStatus.canEditSmartConsultSwitch"
+												  ms-duplex-number="args.strategy" value="2" name="switch" /><label for="sometimes">仅客服离线时使用</label></span>
+						<span class="item"><input type="radio" id="never"
+												  ms-attr-disabled="!editStatus.canEditSmartConsultSwitch"
+												  ms-duplex-number="args.strategy" value="3" name="switch" /><label for="never">不使用</label></span>
+					</div>
+				</div>
+				<div class="m-form">
+					<div class="head">
+						<h3 class="title">设置智能客服欢迎语：</h3>
+						<div class="operations">
+							<a href="javascript:;" class="g-btn g-btn-sm normal" ms-click="startEdit('canEditDefaultQuestions')">编辑</a>
+							<a href="javascript:;" class="g-btn g-btn-sm" ms-click="save('canEditDefaultQuestions')">保存</a>
+						</div>
+					</div>
+					<div class="cont">
+						<div class="welcome-msg">
+							<span class="label">欢迎语：</span>
+							<input class="inp" type="text"
+								   ms-attr-disabled="!editStatus.canEditDefaultQuestions"
+								   ms-duplex="args.welcomeMsg" />
+						</div>
+						<div class="frequently">
+							<span class="label">常见问题：</span>
+							<ul class="q-list">
+								<li class="a-item tips">* 常见问题将在客人进入后自动发送，设置常见问题后，请在智能问题集添加相应的问答：</li>
+								<li class="a-item" ms-repeat-item="args.defaultQuestion">
+									<span class="order">{{$index + 1}}.</span>
+									<input class="inp" type="text" ms-attr-disabled="!editStatus.canEditDefaultQuestions" ms-duplex="item" />
+								</li>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="m-form">
+					<div class="head">
+						<h3 class="title">设置智能问题集：</h3>
+						<div class="operations">
+							<a href="javascript:;" class="g-btn g-btn-sm" ms-click="editQuestion">添加问题</a>
+						</div>
+					</div>
+					<div class="cont">
+						<p class="tips">* 一组Q&amp;A可以设置2个近似问法，问题尽量简洁，智能客服会根据问题和近似问法模糊识别客人的问题；</p>
+						<div class="m-filter-row clearfix" ms-widget="smartgrid, smartQuestionList, smartQuestionList"></div>
+					</div>
+				</div>
+
+				<div id="editQuestion" class="dlg-question"  ms-widget="dialog, $editQuestionDlg, $editQuestionDlg">
+					<ul class="m-form">
+						<li class="item">
+							<span class="label">问题：</span>
+							<input type="text" class="inp" ms-duplex="currentEditQuestion.question1" />
+						</li>
+						<li class="item">
+							<span class="label">近似问法1：</span>
+							<input type="text" class="inp" ms-duplex="currentEditQuestion.question2" />
+						</li>
+						<li class="item">
+							<span class="label">近似问法2：</span>
+							<input type="text" class="inp" ms-duplex="currentEditQuestion.question3" />
+						</li>
+						<li class="item">
+							<span class="label">答案：</span>
+							<textarea type="text" class="inp" ms-duplex="currentEditQuestion.answer"></textarea>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="feedbackList" ms-visible="tabName == 'feedbackList'" ms-controller="feedbackList">
+				<div class="m-filter-row clearfix" style="margin-top: 10px">
+					<label class="m-filter-tit60">问题时间：</label>
+					<div class="m-filter-con2">
+						<input ms-widget="datepicker"  ms-duplex="PMdata.start_time" />
+						-
+					</div>
+					<div class="m-filter-con2">
+						<input ms-widget="datepicker"  ms-duplex="PMdata.end_time" />
+					</div>
+					<label class="m-filter-tit60">用户反馈：</label>
+					<div class="m-filter-con70">
+						<select  class="form-txtctr" ms-duplex="PMdata.is_worked">
+							<option value="">全部</option>
+							<option value="1">是</option>
+							<option value="0">否</option>
+						</select>
+					</div>
+					<label class="m-filter-tit60">问题类型：</label>
+					<div class="m-filter-con70">
+						<select  class="form-txtctr" ms-duplex="PMdata.intent_type">
+							<option value="">全部</option>
+							<option value="0">闲聊</option>
+							<option value="1">业务</option>
+						</select>
+					</div>
+					<label class="m-filter-tit60">问题状态：</label>
+					<div class="m-filter-con70">
+						<select  class="form-txtctr" ms-duplex="PMdata.status">
+							<option value="">全部</option>
+							<option value="0">未处理</option>
+							<option value="1">已处理</option>
+						</select>
+					</div>
+					<div class="m-filter-tit60 fl">
+						<label class="m-filter-tit fl">
+							<a href="javascript:;" class="g-btn g-btn-sm" ms-click="searchFeedbackList">搜索</a>
+						</label>
+					</div>
+				</div>
+
+				<div class="m-filter-row clearfix" ms-widget="smartgrid, $feedbackList, $feedbackList"></div>
+
+				<div id="editFeedbackQuestion" class="dlg-question"  ms-widget="dialog, $editFeedbackQuestionDlg, $editFeedbackQuestionDlg">
+					<ul class="m-form">
+						<li class="item">
+							<span class="label">用户问题：</span>
+							<input type="text" disabled class="inp" ms-duplex="currentFeedbackQuestion.question" />
+						</li>
+						<li class="item">
+							<span class="label">问题类型：</span>
+							<select ms-duplex="currentFeedbackQuestion.intent_type">
+								<option value="0">闲聊</option>
+								<option value="1">业务</option>
+							</select>
+						</li>
+						<li class="item">
+							<span class="label">答案：</span>
+							<textarea type="text" class="inp" ms-duplex="currentFeedbackQuestion.answer"></textarea>
+						</li>
+					</ul>
+				</div>
+
+				<div ms-widget="dialog, $ignoreFeedbackQuestionDlg, $ignoreFeedbackQuestionDlg"></div>
+
+				<div ms-widget="dialog, $alertDlg, $alertDlg"></div>
+			</div>
+		</div>
+	</div>
+	<p class="no-support-tip" ms-if="!isSupport">服务即将开放，敬请期待</p>
+</div>
+	#parse('page/common/footer.vm')
+<script src="${commonPath}/jquery-1.7.2.js"></script>
+<script src="${jsPath}/admin/smartConsult/index@1.0.0.js"></script>
+</body>
+</html>

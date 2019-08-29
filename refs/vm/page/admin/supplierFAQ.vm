@@ -1,0 +1,22 @@
+####绑定微信管理页
+#parse('widget/include/global.vm')
+<!DOCTYPE HTML>
+<html>
+<head>
+	#parse('page/common/head.vm')
+	<link type="text/css" rel="stylesheet" media="screen" href="${cssPath}/admin/supplierFAQ@1.0.0.css"/>
+	<link rel="stylesheet"  href="${commonPath}/element-ui.css" />
+	<script type="text/javascript">
+		window.suList = $!{suList};
+		window.bType = $!{bType};
+	</script>
+</head>
+<body>
+<div id="pageManage"></div>
+	#parse('page/common/footer.vm')
+<script type="text/javascript" src="${commonPath}/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="${commonPath}/vue.min.js"></script>
+<script type="text/javascript" src="${commonPath}/element-ui.js"></script>
+<script src="${jsPath}/admin/supplierFAQ/index@1.0.0.js"></script>
+</body>
+</html>

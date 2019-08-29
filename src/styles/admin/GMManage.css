@@ -225,7 +225,7 @@
     display: inline-block;
     width: 12px;
     height: 12px;
-    background: url("../../../public/img/star.png") no-repeat;
+    background: url("/public/img/star.png") no-repeat;
     background-size: 100%;
 }
 .services-setting .welcome-message-container{

@@ -10,7 +10,7 @@
 }
 .ty_logo {
     float: left;
-    background: url(../../../public/img/logo.png) no-repeat;
+    background: url(/public/img/logo.png) no-repeat;
     width: 140px;
     height: 50px;
 }
