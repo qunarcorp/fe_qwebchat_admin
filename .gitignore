@@ -1,8 +1,8 @@
 # qzz/fekit/grunt
 /ver/
 /dev/
-/prd/
-/refs/
+# /prd/
+# /refs/
 # /fekit_modules/
 
 
