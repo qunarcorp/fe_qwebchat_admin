@@ -189,12 +189,16 @@ var ShopList = {
             },
 
             searchShopList: function () {
-                ShopList.searchShopList()
+                var params = avalon.mix({}, vm.shopList.GMdata.$model);
+                if (params.busiSupplierName.length <= 0) {
+                    // 搜索为空
+                    vm.shopList.getShopList()
+                }else{
+                    ShopList.searchShopList()
                     .done(function(result) {
                         if (result.ret) {
                             var $shopList = vm.$shopList,
                                 data = result.data ? result.data : [];
-
                             $shopList.render(data);
                             $shopList.pager.totalItems = result.data.length;
                         } else {
@@ -202,6 +206,8 @@ var ShopList = {
                         }
                     })
                     .fail(GMManage.error);
+                }
+                
             },
 
             // 编辑、添加店铺
@@ -328,21 +334,12 @@ var ShopList = {
 
     searchShopList: function () {
         var params = avalon.mix({}, vm.shopList.GMdata.$model);
-        if (params.busiSupplierName.length <= 0) {
-            return 	avalon.ajax({
-                url: config.ShopList,
-                type: 'GET',
-                data: params,
-                dataType: 'json'
-            });
-        } else {
-            return 	avalon.ajax({
-                url: config.searchShopList,
-                type: 'GET',
-                data: params,
-                dataType: 'json'
-            });
-        }
+        return 	avalon.ajax({
+            url: config.searchShopList,
+            type: 'GET',
+            data: params,
+            dataType: 'json'
+        });
     },
 
     clearSearchInfo: function() {
