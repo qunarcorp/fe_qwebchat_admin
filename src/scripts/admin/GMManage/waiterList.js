@@ -154,11 +154,13 @@ var WaiterList = {
 					name: '绑定微信状态',
 					width: 100,
 					format: 'bindwxHtml'
-				}, {
-					key: 'host',
-					name: '域名',
-					width: 120
-				}, {
+				}, 
+				// {
+				// 	key: 'host',
+				// 	name: '域名',
+				// 	width: 120
+				// }, 
+				{
 					key: "createTime",
 					name: "添加日期",
 					sortable: false,
