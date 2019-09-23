@@ -93,16 +93,18 @@ var ShopList = {
                         return result;
                     }
                 },
-                columns: [{
-                    key: 'busiType', // 列标识
-                    name: '业务线', // 列名
-                    sortable: false, // 是否可排序
-                    isLock: true, // 是否锁死列让其始终显示
-                    align: 'center', // 列的对象方式
-                    defaultValue: '数据错误', // 列的默认值
-                    toggle: true, // 控制列的显示隐藏
-                    width: 120
-                }, {
+                columns: [
+                //     {
+                //     key: 'busiType', // 列标识
+                //     name: '业务线', // 列名
+                //     sortable: false, // 是否可排序
+                //     isLock: true, // 是否锁死列让其始终显示
+                //     align: 'center', // 列的对象方式
+                //     defaultValue: '数据错误', // 列的默认值
+                //     toggle: true, // 控制列的显示隐藏
+                //     width: 120
+                // }, 
+                {
                     key: 'id',
                     name: '店铺ID',
                     sortable: false,
@@ -111,37 +113,42 @@ var ShopList = {
                     key: 'name',
                     name: '店铺名称',
                     sortable: false,
-                    width: 200,
+                    width: 300,
                 }, {
                     key: 'status',
                     name: '店铺状态',
                     sortable: false,
                     width: 120,
                     format: 'shopStatusHtml',
-                }, {
-                    key: 'assignStrategy',
-                    name: '分配策略',
-                    sortable: false,
-                    width: 120,
-                    format: 'strategyHtml'
-                },{
-                    key: 'ext_flag',
-                    name: '排队状态',
-                    sortable: false,
-                    width: 120,
-                    format: 'queueState',
-                }, {
+                }, 
+                // {
+                //     key: 'assignStrategy',
+                //     name: '分配策略',
+                //     sortable: false,
+                //     width: 120,
+                //     format: 'strategyHtml'
+                // },
+                // {
+                //     key: 'ext_flag',
+                //     name: '排队状态',
+                //     sortable: false,
+                //     width: 120,
+                //     format: 'queueState',
+                // }, 
+                {
                     key: 'createDate',
                     name: '创建日期',
                     sortable: false,
-                    width: 160,
+                    width: 200,
                     format: 'createTimehtml'
-                }, {
-                    name: '操作',
-                    sortable: false,
-                    width: 140,
-                    format: 'operateHtml'
-                }],
+                }, 
+                // {
+                //     name: '操作',
+                //     sortable: false,
+                //     width: 140,
+                //     format: 'operateHtml'
+                // }
+            ],
                 data: [],
                 pager: {
                     perPages: 15,

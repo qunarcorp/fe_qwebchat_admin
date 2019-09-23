@@ -38,9 +38,11 @@
 				<li>
 					<a href="javascript:;" data-rel="groupManage" ms-click="changeTab">分组管理</a>
 				</li>
+				<!--
 				<li>
 					<a href="javascript:;" data-rel="prdGroupMapping" ms-click="changeTab">分组产品关联</a>
 				</li>
+				 -->
 				<li>
 					<a href="javascript:;" data-rel="servicesSetting" ms-click="changeTab">服务设置</a>
 				</li>
