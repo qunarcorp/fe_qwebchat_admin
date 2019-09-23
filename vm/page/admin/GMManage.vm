@@ -13,7 +13,7 @@
 		<div class="container">
 			<div class="m-nav-list">
 				<li class="active">
-					<a href="#">客服管理</a>
+					<a href="#">分类&客服</a>
 				</li>
 				<!-- 
 				<li>
@@ -30,13 +30,13 @@
 		<div class="m-sub-nav clearfix">
 			<div class="m-subnav-list">
 				<li class="active">
-					<a href="javascript:;" data-rel="shopList" ms-click="changeTab">店铺管理</a>
+					<a href="javascript:;" data-rel="shopList" ms-click="changeTab">分类管理</a>
 				</li>
 				<li>
-					<a href="javascript:;" data-rel="waiterList" ms-click="changeTab">客服列表</a>
+					<a href="javascript:;" data-rel="waiterList" ms-click="changeTab">客服管理</a>
 				</li>
 				<li>
-					<a href="javascript:;" data-rel="groupManage" ms-click="changeTab">分组管理</a>
+					<a href="javascript:;" data-rel="groupManage" ms-click="changeTab">模块管理</a>
 				</li>
 				<!--
 				<li>
