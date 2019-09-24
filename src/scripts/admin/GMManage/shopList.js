@@ -9,6 +9,7 @@ var editShopTpl = require('../template/editShopM.string'),
     vm = avalon.vmodels;
 var ShopList = {
     init: function() {
+        console.log('GMManage')
         this.initAvalon();
         this.addValidationRule();
     },
