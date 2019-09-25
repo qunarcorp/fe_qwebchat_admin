@@ -411,7 +411,8 @@ var WaiterList = {
 				vm.waiterList.suIdList = avalon.mix([], suIdList);
 				vm.waiterList.suIds = suIdList.join('');
 				vm.waiterList.rowSuList = avalon.mix([], suListArr);
-				vm.waiterList.thisSuid = thisSuid;
+				vm.waiterList.thisSuid = thisSuid;//当前编辑客服 所属的店铺
+				vm.waiterList.editSuId = thisSuid;//当前编辑框 选中的店铺
 			},
 			//改变所属商家
 			changeSupplier: function () {
@@ -464,7 +465,7 @@ var WaiterList = {
 
 				vm.waiterList.suIdList = avalon.mix([], suIdList);
 				vm.waiterList.suIds = suIdList.join(',');
-				vm.waiterList.editSuId = suId;
+				vm.waiterList.editSuId = suId;//当前编辑框 选中的店铺
 			},
 			groupListInfo: function (busiList) {
 				var gr = [];
