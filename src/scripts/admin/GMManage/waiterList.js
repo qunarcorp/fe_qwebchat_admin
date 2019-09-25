@@ -411,6 +411,8 @@ var WaiterList = {
 				vm.waiterList.suIdList = avalon.mix([], suIdList);
 				vm.waiterList.suIds = suIdList.join('');
 				vm.waiterList.rowSuList = avalon.mix([], suListArr);
+				vm.waiterList.thisSuid = thisSuid;//当前编辑客服 所属的店铺
+				vm.waiterList.editSuId = thisSuid;//当前编辑框 选中的店铺
 			},
 			//改变所属商家
 			changeSupplier: function () {
@@ -463,6 +465,7 @@ var WaiterList = {
 
 				vm.waiterList.suIdList = avalon.mix([], suIdList);
 				vm.waiterList.suIds = suIdList.join(',');
+				vm.waiterList.editSuId = suId;//当前编辑框 选中的店铺
 			},
 			groupListInfo: function (busiList) {
 				var gr = [];
@@ -754,7 +757,11 @@ var WaiterList = {
 			params = avalon.mix({}, vm.editGM.datas.$model);
 		params.qunarName = vm.waiterList.userName || params.qunarName;
 		params.suIdList = avalon.mix([], vm.waiterList.suIdList.$model);
-		params.groupList = avalon.mix([], vm.waiterList.groupList.$model);
+		// 若变更了店铺- groupList清空，vm.waiterList.thisSuid为当前编辑的客服所属的店铺
+		// 仍为当前店铺，groupList按原逻辑传值
+		if(vm.waiterList.editSuId == vm.waiterList.thisSuid){
+			params.groupList = avalon.mix([], vm.waiterList.groupList.$model);
+		}
 		avalon.ajax({
 				url: config.editGM,
 				type: 'POST',
