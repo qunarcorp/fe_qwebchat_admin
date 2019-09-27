@@ -140,13 +140,13 @@ var WaiterList = {
 					width: 150
 				}, {
 					key: "busiList",
-					name: "组",
+					name: "模块",
 					sortable: false,
 					width: 180,
 					format: 'groupHtml'
 				}, {
 					key: "supplierName",
-					name: "所属商家",
+					name: "所属分类",
 					sortable: false,
 					width: 160
 				}, {
@@ -248,11 +248,11 @@ var WaiterList = {
 			renderSortSeat: function () {
 				var suIds = vm.waiterList.GMdata.suIds;
 				if (!suIds.length) {
-					vm.GMManage.showAlert('请先选择所属商家再进行操作！');
+					vm.GMManage.showAlert('请先选择所属分类再进行操作！');
 					return;
 				}
 				if (suIds.length > 1) {
-					vm.GMManage.showAlert('只可选择一个所属商家！');
+					vm.GMManage.showAlert('只可选择一个所属分类！');
 					return;
 				}
 				vm.waiterList.GMdata.bySort = "priority";
@@ -279,7 +279,7 @@ var WaiterList = {
 					})
 			},
 
-			//修改客服所属商家
+			//修改客服所属分类
 			changeSuClassify: function (e) {
 				var suIds = vm.waiterList.GMdata.suIds;
 				var thisLi = this.parentElement,
@@ -414,7 +414,7 @@ var WaiterList = {
 				vm.waiterList.thisSuid = thisSuid;//当前编辑客服 所属的店铺
 				vm.waiterList.editSuId = thisSuid;//当前编辑框 选中的店铺
 			},
-			//改变所属商家
+			//改变所属分类
 			changeSupplier: function () {
 				var suId = this.getAttribute('data-id'),
 					isChecked = this.getAttribute('data-ischecked'),

@@ -64,7 +64,7 @@ var groupManage = {
 				},
 				columns: [{
 					key: "id",
-					name: "组ID",
+					name: "模块ID",
 					sortable: false,
 					isLock: true,
 					align: "center",
@@ -73,12 +73,12 @@ var groupManage = {
 					width: 120
 				}, {
 					key: "groupName",
-					name: "组名称",
+					name: "模块名称",
 					sortable: false,
 					width: 120
 				}, {
 					key: "supplierName",
-					name: "所属商家",
+					name: "所属分类",
 					sortable: false,
 					width: 200
 				}, {
@@ -127,7 +127,7 @@ var groupManage = {
 			},
 			//编辑分组弹窗
 			$groupEdit: {
-				title: '编辑分组',
+				title: '编辑模块',
 				content: '',
 				width: 'auto',
 				onConfirm: function() {
@@ -143,7 +143,7 @@ var groupManage = {
 			},
 			//删除分组
 			$rmGroup: {
-				title: '删除分组',
+				title: '删除模块',
 				content: rmGroupTmp,
 				width: 'auto',
 				onConfirm: function() {
@@ -157,7 +157,7 @@ var groupManage = {
 						})
 						.done(function(result) {
 							if (result.ret) {
-								vm.GMManage.showAlert('删除分组成功！');
+								vm.GMManage.showAlert('删除模块成功！');
 								me.clearSearchInfo();
 								vm.groupManage.getGroupList();
 							} else {
@@ -195,7 +195,7 @@ var groupManage = {
 					
 					thisSuId = Number(this.getAttribute('data-supplierId'));
 					rowSuList = avalon.mix([], thisVm.rowSuList);
-				thisVm.title = this.getAttribute('data-rel') ? '编辑分组' : '添加分组';
+				thisVm.title = this.getAttribute('data-rel') ? '编辑模块' : '添加模块';
 				thisVm.GMInfo = avalon.mix(true, {}, info);
 				// //策略信息没有的时候不显示弹窗
 				// if (!GMManage.sortMethods.$model.length) {
@@ -250,7 +250,7 @@ var groupManage = {
 					seatList: GMList
 				}
 			},
-			//改变所属商家
+			//改变所属分类
 			changeSuId: function() {
 				var suId = Number(this.getAttribute('data-id')),
 					isChecked = Number(this.getAttribute('data-isChecked'));
@@ -404,7 +404,7 @@ var groupManage = {
 		}).done(function(result) {
 			var GMList = [];
 			if (!result.data) {
-				vm.GMManage.showAlert('请先为该商家添加客服！');
+				vm.GMManage.showAlert('请先为分类添加客服！');
 				thisVm.rowData.seatList = [];
 				return;
 			}

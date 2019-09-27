@@ -46,10 +46,10 @@ var prdGroupMapping = {
 				self.mappingModel.groups = groupData;
 
 			} else {
-				self.showAlert('获取分组失败');
+				self.showAlert('获取模块失败');
 			}
 		}).fail(function(resp) {
-			self.showAlert('获取分组失败');
+			self.showAlert('获取模块失败');
 		});
 	},
 	groupDataHandler: function(groupList) {
@@ -93,7 +93,7 @@ var prdGroupMapping = {
 		var self = this;
 
 		if (!groupId) {
-			this.showAlert('未指定分组');
+			this.showAlert('未指定模块');
 			return;
 		}
 
@@ -168,7 +168,7 @@ var prdGroupMapping = {
 				},
 				columns: [{
 					key: 'group',
-					name: '分组名称',
+					name: '模块名称',
 					width: 200
 				}, {
 					key: 'prd',

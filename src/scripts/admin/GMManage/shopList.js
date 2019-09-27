@@ -106,17 +106,17 @@ var ShopList = {
                 // }, 
                 {
                     key: 'id',
-                    name: '店铺ID',
+                    name: '分类ID',
                     sortable: false,
                     width: 120
                 }, {
                     key: 'name',
-                    name: '店铺名称',
+                    name: '分类名称',
                     sortable: false,
                     width: 300,
                 }, {
                     key: 'status',
-                    name: '店铺状态',
+                    name: '分类状态',
                     sortable: false,
                     width: 120,
                     format: 'shopStatusHtml',
@@ -221,7 +221,7 @@ var ShopList = {
             editShop: function() {
                 var thisVm = vm.shopList,
                     me = ShopList,
-                    title = this.getAttribute('data-rel') ? '编辑店铺' : '添加店铺';
+                    title = this.getAttribute('data-rel') ? '编辑分类' : '添加分类';
 
                 thisVm.isAdd = this.getAttribute('data-rel') ? false : true;
                 me.initEditAvalon();

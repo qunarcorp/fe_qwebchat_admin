@@ -1,11 +1,11 @@
 <form ms-widget="validation, $Groupvalidation, $Groupvalidation" onselectstart="return false" ms-controller="editGroup">
 	<div class="m-filter-row clearfix mt_5 bt">
-		<label class="m-filter-tit">组名称：</label>
+		<label class="m-filter-tit">模块名称：</label>
 		<div class="m-filter-con2">
-			<input type="text" class="form-txtctr" maxlength="30" ms-duplex-required-maxlength="datas.groupName" placeholder="组名称"></div>
+			<input type="text" class="form-txtctr" maxlength="30" ms-duplex-required-maxlength="datas.groupName" placeholder="模块名称"></div>
 	</div>
 	<div class="m-filter-row clearfix mt_5">
-		<label class="m-filter-tit">所属商家：</label>
+		<label class="m-filter-tit">所属分类：</label>
 	</div>
 	<div class="m-filter-row clearfix bt mt_5 pl60">
 		<div class="m-filter-con2">
@@ -24,6 +24,6 @@
 		</div>
 	</div>
     <div class="m-filter-row clearfix mt_5 pl60">
-        <label style="font-size:13px;"><input style="margin-bottom:3px;" type="checkbox" id="default_checkbox" ms-duplex-checked="datas.defaultValue"/>&nbsp;默认分组</label>
+        <label style="font-size:13px;"><input style="margin-bottom:3px;" type="checkbox" id="default_checkbox" ms-duplex-checked="datas.defaultValue"/>&nbsp;默认模块</label>
 	</div>
 </form>
