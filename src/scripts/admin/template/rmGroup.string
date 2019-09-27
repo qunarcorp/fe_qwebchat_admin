@@ -1,5 +1,5 @@
 <div class="m-filter-row clearfix mt_5">
-	<label class="m-filter-tit">组名称：</label>
+	<label class="m-filter-tit">模块名称：</label>
 	<div class="m-filter-con2">
 		{{groupName}}
 	</div>

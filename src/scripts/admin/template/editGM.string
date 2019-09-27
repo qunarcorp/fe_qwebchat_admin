@@ -18,7 +18,7 @@
 		</div>
 	</div>-->
 	<div class="m-filter-row clearfix mt_5">
-		<label class="m-filter-tit">所属商家：</label>
+		<label class="m-filter-tit">所属分类：</label>
 	</div>
 	<div class="m-filter-row clearfix bt mt_5 pl60">
 		<!-- <a href="javascript:void(0)" ms-if="isAdd" class="btn mr5" ms-repeat="rowSuList" ms-click="changeSupplier" ms-attr-data-id="el.id" ms-attr-data-isChecked= "el.isChecked">
@@ -30,12 +30,12 @@
 		<span class="btn mr5" ms-repeat="rowSuList" ms-click="changeSupplier" ms-attr-data-id="el.id" ms-attr-data-isChecked= "el.isChecked">
 			{{el.name}}
 		</span>
-		<input type="text" class="hide" id="suId" name="business" errorinfo="必须选择所属商家" ms-duplex-required="suIds" />
+		<input type="text" class="hide" id="suId" name="business" errorinfo="必须选择所属分类" ms-duplex-required="suIds" />
 	</div>
 	<!-- <div ms-if="hasBusinessGroup">
 	<div class="m-filter-row clearfix mt_5">
-		<label class="m-filter-tit">选择组：</label>
-		<div class="m-filter-con2 bt5">(不选的情况默认显示业务下所有客服，选择后将只显示组内客服)</div>
+		<label class="m-filter-tit">选择模块：</label>
+		<div class="m-filter-con2 bt5">(不选的情况默认显示业务下所有客服，选择后将只显示模块内客服)</div>
 	</div>
 	<div ms-repeat="rowData">
 		<div class="m-filter-row clearfix mt_5">

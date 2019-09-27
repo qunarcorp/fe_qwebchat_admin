@@ -8,13 +8,13 @@
 		</div>
 	</div> -->
 	<div class="m-filter-row clearfix mt_5">
-		<label class="m-filter-tit">店铺名称：</label>
+		<label class="m-filter-tit">分类名称：</label>
 		<div class="m-filter-con2-tip">
 			<input type="text" class="form-txtctr-tip" maxlength="30" ms-duplex-required-maxlength-shopName="datas.name" placeholder="网络名称">
 		</div>
 	</div>
 	<div class="m-filter-row clearfix mt_5 bt hide">
-		<label class="m-filter-tit">店铺状态：</label>
+		<label class="m-filter-tit">分类状态：</label>
 		<div class="m-filter-con2">
 		    <label>
 		        <input name="state" type="radio" ms-value="1" ms-duplex-text="datas.status" style="margin-right:8px;"/>在线
